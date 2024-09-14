@@ -4,10 +4,14 @@
 # Date : 2024-09-04
 
 def parle(texte):
-    print(f"\033[1;34m\n{texte}\n\033[0m")
+    """Fonction pour faire parler le jeu"""
+    print("\033[1;34m") # Colorie en bleu
+    print(f"{texte}")   # Affiche la demande
+    print("\033[0m")    # Recolorie en couleur normale
 
 def demande(texte):
-    return input(f"{texte}\n>")
+    """Fonction pour demander un truc au joueur"""
+    return input(f"{texte}\n>") # Affiche le texte avec un saut de ligne à la fin (c'est le \n)
 
 
 print("=======================================")
