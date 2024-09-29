@@ -10,3 +10,7 @@ if jeSors == "Oui":
     print("ouvre la porte")
 else:
     print("Je m'en fous! FIN DU JEU")
+     
+
+
+     
