@@ -3,6 +3,7 @@
 # =================================
 # Date : 2024-09-04
 
+
 def parle(texte):
     """Fonction pour faire parler le jeu"""
     print("\033[1;34m") # Colorie en bleu
@@ -53,14 +54,14 @@ era=demande("Tu vas à la cave oui ou non")
 if era.lower()=="oui":
     parle(f"{nom_du_heros} tu t'appelle bien {nom_du_heros}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!") 
 else:
-    parle("") 
+    parle(f"{nom_du_heros}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!") 
     
 
 # Nouvel étape
 ae=demande("_Tu arose les fleur oui ou non") 
 
 if ae.lower()=="oui":
-    parle("ok.") 
+    parle(f"ok{nom_du_heros}.") 
 else:
     parle("Oh zut!!") 
 
@@ -78,11 +79,12 @@ if ouvrire.lower()=="oui":
     parle("Le coffre est bleu,grand et solide,le lit est vert et mesure cinq m et ta valise est orange et mesure cinquante cm") 
 else:
     parle("Tu est sur?") 
+
 parle(f"Tu part pour le dongeon de la mort!") 
 parle("Tu vois un dongeon très grand il a l' air dangereus.")  
 parle(f"Fais dodo {nom_du_heros}!") 
 
-i=demande(f"hk oui ou vert")
+i=demande(f"")
 
 
 
