@@ -1,5 +1,4 @@
 class Personnage:
-
     def __init__(self, name, age):
         self.name=name
         self.age=age
@@ -30,3 +29,23 @@ class Personnage:
         else:
             print(f"{self.name} se reveille !!!")
         self.fais_dodo=False
+
+
+
+gabriel=Personnage("Gabriel", 8)
+papa=Personnage("Sébastien", 44)
+maman=Personnage("Anne-Lise", 43)
+raphou=Personnage("Raphaëlle", 6)
+elora=Personnage("Elora", 18)
+
+gabriel.dire_bonjour()
+gabriel.se_coucher()
+gabriel.se_coucher()
+gabriel.dire_bonjour()
+gabriel.se_reveiller()
+gabriel.se_reveiller()
+gabriel.dire_bonjour()
+gabriel.dire_son_age()
+elora.dire_son_age() 
+class ami:
+ 
