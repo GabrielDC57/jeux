@@ -10,7 +10,8 @@ Sur la butte, il aperçoit même des garçons qui jouent à se battre, ils s'att
 boulevard.
 """
 
-mon_texte_sans_saut_ligne = mon_texte.replace("\n","")
+mon_texte_sans_saut_ligne = mon_texte.replace("\n"," ")
+print("Mon texte:")
 print(mon_texte_sans_saut_ligne)
 
 liste_mot_avec_p = []
