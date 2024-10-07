@@ -83,7 +83,8 @@ else:
 parle(f"Tu part pour le dongeon de la mort!") 
 parle("Tu vois un dongeon très grand il a l' air dangereus.")  
 parle(f"Fais dodo {nom_du_heros}!") 
-parle(f"{nom_du_heros} tu dois acheter un livre,des patates,du coca,de l'eau ...")
+parle(f"{nom_du_heros} tu dois acheter un livre,des patates,du coca,de l'eau ...") 
+parle(f"{nom_du_heros} tu est un poisson?") 
 
 
 
