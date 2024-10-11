@@ -15,6 +15,7 @@ tao=Chat("Tao", (50,50))
 # On déclare l'ensemble des sprits
 allsprites = pygame.sprite.RenderPlain((tao))
 
+# Boucle infinie (le mot clef while)
 running=True
 clock=pygame.time.Clock()
 while running:
