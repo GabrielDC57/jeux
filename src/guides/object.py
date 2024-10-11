@@ -47,5 +47,3 @@ gabriel.se_reveiller()
 gabriel.dire_bonjour()
 gabriel.dire_son_age()
 elora.dire_son_age() 
-class ami:
- 
