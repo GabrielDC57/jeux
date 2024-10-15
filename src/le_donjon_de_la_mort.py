@@ -7,7 +7,7 @@
 def parle(texte):
     """Fonction pour faire parler le jeu"""
     print("\033[1;34m") # Colorie en bleu
-    print(f"{texte}")   # Affiche la demande
+    print(texte)        # Affiche la demande
     print("\033[0m")    # Recolorie en couleur normale
 
 def demande(texte):
