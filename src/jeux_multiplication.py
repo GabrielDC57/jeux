@@ -1,17 +1,17 @@
 import random, time
 
 # variables génériques
-temps_de_reponse = 12
-temps_de_reponse_rapide = 4
-longueur_du_pont = 20
+temps_de_reponse=12
+temps_de_reponse_rapide=4
+longueur_du_pont=30
 
 # regle pour avancer
-reponse_correcte = 1
-pas_du_crocodile = 1
+reponse_correcte=1
+pas_du_crocodile=1
 
 # position
 position_joueur=0
-position_crocodile=-int(longueur_du_pont / 2)
+position_crocodile=-int(longueur_du_pont/2)
 
 # statistiques
 nb_de_question=0
@@ -47,30 +47,29 @@ def affiche_statistiques():
     """Afficher les infos en temps réel"""
     parle(f"Pont: {longueur_du_pont} | Joueur: {position_joueur} | Crocodile: {position_crocodile}")
 
-print(f"""
+parle(f"""
 ==================================================================
-BONJOUR AVENTURIER DES MATHEMATIQUES
+BONJOUR AVENTURIER DES MATHEMATIQUES dansantes,
       
-Tu dois traverser un pont. Le pont est composé de 20 planches.
+Tu dois traverser un pont de tous les dangers. 
+Ce pont est composé de {longueur_du_pont} planches.
       
 Un crocodile te poursuit à la même vitesse.
-Il est en retard de {longueur_du_pont/2} planches
-par rapport à toi.
+Il est en retard de {-position_crocodile} planches par rapport à toi.
 
-A chaque étape, on te pose une question :
+A chaque étape, on te posera une question :
 
 - Si tu réponds juste à une question, tu avances d'une planche,
-- Si tu réponds faux, tu recules d'une planche,
+- Si tu réponds faux, tu recules d'une planche.
 
-MAIS le temps compte aussi : 
+La limite de réponse à chaque question est de {temps_de_reponse} secondes :
 
-- Si tu réponds en dessous de ({temps_de_reponse}) secondes, 
-le crocodile avance d'un pas de plus et risque de te manger
+- Si tu réponds au dessus de {temps_de_reponse} secondes, 
+le crocodile avance d'un pas de plus et risque de te manger,
 - Si tu réponds juste et en dessous de {temps_de_reponse_rapide} secondes, 
-alors t'avance encore d'une planche
+alors t'avance encore d'une planche.
 
-La limite de réponse à chaque question est
-de {temps_de_reponse} secondes.
+BONNE CHANCE, AVENTURIER DES MATHEMATIQUES !!!
 ==================================================================
 """)
 
@@ -147,7 +146,7 @@ while True:
         """)
         break
 
-    if position_joueur==longueur_du_pont:
+    if position_joueur>=longueur_du_pont:
         parle("""
         ====================================
             TU AS REUSSI LE PASSAGE DU PONT
