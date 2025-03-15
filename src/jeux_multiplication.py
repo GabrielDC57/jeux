@@ -93,11 +93,11 @@ while True:
     temps_actuel=time.time()
     temps_ecoule=temps_actuel-dernier_temps
     dernier_temps=temps_actuel
-    if dernier_temps<temps_mini:
-        temps_mini=dernier_temps
+    if temps_ecoule<temps_mini:
+        temps_mini=temps_ecoule
         temps_mini_question=f"{a} x {b}"
-    if dernier_temps>temps_maxi:
-        temps_maxi=dernier_temps
+    if temps_ecoule>temps_maxi:
+        temps_maxi=temps_ecoule
         temps_maxi_question=f"{a} x {b}"
     
     # Dans tous les cas le crocodile avance
@@ -165,11 +165,11 @@ print(f"========================================================================
 print(f"Vous avez traversé {position_joueur} planches sur les {longueur_du_pont} du pont")
 print(f"Vous avez répondu juste à {nb_de_question_juste} questions")
 print(f"Vous avez répondu faux à {nb_de_question_fausse} questions")
-print(f"Vous avez mis {temps_total:.2f} secondes et répondu à {nb_de_question} questions")
+print(f"Vous avez mis {temps_total:.2f} secondes pour {nb_de_question} questions")
 print(f"Vous avez mis environ {(temps_total/nb_de_question):.2f} secondes par question")
 print(f"Vous avez distancé le crocodile sur {nb_de_question_rapide} questions")
 print(f"Le crocodile vous a rattrapé sur {nb_de_question_lente} questions")
-print(f"Pour répondre, votre temps minimal est de {temps_mini:.2f} sur la question {temps_mini_question}")
-print(f"Pour répondre, votre temps maximal est de {temps_maxi:.2f} sur la question {temps_maxi_question}")
+print(f"Pour répondre, votre temps minimal est de {temps_mini:.2f} secondes sur la question {temps_mini_question}")
+print(f"Pour répondre, votre temps maximal est de {temps_maxi:.2f} secondes sur la question {temps_maxi_question}")
 print(f"======================================================================================")
 
