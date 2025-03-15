@@ -161,15 +161,15 @@ print(f"""
 ============================================================
 Résumé du jeu
 ============================================================
-Vous avez traversé {position_joueur} planches sur les {longueur_du_pont} du pont")
-Vous avez répondu juste à {nb_de_question_juste} questions")
-Vous avez répondu faux à {nb_de_question_fausse} questions")
-Vous avez mis {temps_total:.2f} secondes pour {nb_de_question} questions")
-Vous avez mis environ {(temps_total/nb_de_question):.2f} secondes par question")
-Vous avez distancé le crocodile sur {nb_de_question_rapide} questions")
-Vous avez été rattrapé par le crocodile sur {nb_de_question_lente} questions")
-Vous avez mis {temps_mini:.2f} secondes sur la question {temps_mini_question}")
-Vous avez mis {temps_maxi:.2f} secondes sur la question {temps_maxi_question}")
+Vous avez traversé {position_joueur} planches sur les {longueur_du_pont} du pont
+Vous avez répondu juste à {nb_de_question_juste} questions
+Vous avez répondu faux à {nb_de_question_fausse} questions
+Vous avez mis {temps_total:.2f} secondes pour {nb_de_question} questions
+Vous avez mis environ {(temps_total/nb_de_question):.2f} secondes par question
+Vous avez distancé le crocodile sur {nb_de_question_rapide} questions
+Vous avez été rattrapé par le crocodile sur {nb_de_question_lente} questions
+Vous avez mis {temps_mini:.2f} secondes sur la question {temps_mini_question}
+Vous avez mis {temps_maxi:.2f} secondes sur la question {temps_maxi_question}
 ============================================================
 """)
 
