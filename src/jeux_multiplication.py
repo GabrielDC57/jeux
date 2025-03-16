@@ -1,9 +1,9 @@
 import random, time
 
 # variables génériques
-temps_de_reponse=12
-temps_de_reponse_rapide=4
-longueur_du_pont=30
+temps_de_reponse=10
+temps_de_reponse_rapide=5
+longueur_du_pont=23
 
 # regle pour avancer
 reponse_correcte=1
@@ -49,7 +49,7 @@ def affiche_statistiques():
 
 parle(f"""
 ==================================================================
-BONJOUR AVENTURIER DES MATHEMATIQUES dansantes,
+BONJOUR AVENTURIER DES MATHEMATIQUES,
       
 Tu dois traverser un pont de tous les dangers. 
 Ce pont est composé de {longueur_du_pont} planches.
@@ -132,7 +132,6 @@ while True:
         parle("""
         ====================================
               TU ES TOMBE DU PONT !!!
-                GROS DÉBILE !!!!
         ====================================
         """)
         break
@@ -141,7 +140,7 @@ while True:
         parle("""
         =============================================
               TU AS PERDU !!!
-                LE CROCODILE T'A BOUFFE GROS NUL !!!
+                LE CROCODILE T'A BOUFFE !!!
         =============================================
         """)
         break
@@ -150,7 +149,7 @@ while True:
         parle("""
         ====================================
             TU AS REUSSI LE PASSAGE DU PONT
-                BRAVOOOOOOOO LE NUL !!!
+                BRAVOOOOOOOO !!!
         ====================================
         """)
         break
