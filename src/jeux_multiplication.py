@@ -31,6 +31,14 @@ def parle(texte):
     print(texte)        # Affiche la demande
     print("\033[0m")    # Recolorie en couleur normale
 
+def parle_vert(texte):
+    """Fonction pour faire parler le jeu"""
+    print(f"\033[1;32m{texte}\033[0m")
+
+def parle_rouge(texte):
+    """Fonction pour faire parler le jeu"""
+    print(f"\033[1;31m{texte}\033[0m")
+
 def demande(texte):
     """Fonction pour demander un truc au joueur"""
     return input(f"{texte}\n>") # Affiche le texte avec un saut de ligne à la fin (c'est le \n)
@@ -105,26 +113,26 @@ while True:
     
     # On vérifie le résultat du joueur
     if int(resultat_joueur)==resultat_attendu:
-        print(f"Bravo !!! C'était bien {resultat_attendu}")
-        print(f"Tu avances de {reponse_correcte}")
+        parle_vert(f"Bravo !!! C'était bien {resultat_attendu}")
+        parle_vert(f"Tu avances de {reponse_correcte}")
         position_joueur=position_joueur+reponse_correcte
         nb_de_question_juste+=1
+
+        # On verifie le temps de réponse
+        if (temps_ecoule<=temps_de_reponse_rapide):
+            parle_vert(f"WAOUHHHH, {int(temps_ecoule)} secondes !!! T'es rapide !")
+            parle_vert(f"Tu avances ENCORE de {reponse_correcte}")
+            position_joueur=position_joueur+reponse_correcte
+            nb_de_question_rapide+=1
     else:
-        print(f"FAUX !!!! C'était {resultat_attendu}")
-        print(f"Tu recules de {reponse_correcte}")
+        parle_rouge(f"FAUX !!!! C'était {resultat_attendu}")
+        parle_rouge(f"Tu recules de {reponse_correcte}")
         position_joueur=position_joueur-reponse_correcte
         nb_de_question_fausse+=1
 
-    # On verifie le temps de réponse
-    if (temps_ecoule<=temps_de_reponse_rapide):
-        print(f"WAOUHHHH, {int(temps_ecoule)} secondes !!! T'es rapide !")
-        print(f"Tu avances ENCORE de {reponse_correcte}")
-        position_joueur=position_joueur+reponse_correcte
-        nb_de_question_rapide+=1
-
     if (temps_ecoule>temps_de_reponse):
-        print(f"ATTENTION !!! Tu as répondu en {int(temps_ecoule)} secondes")
-        print(f"Le crocodile se RaPPPPRROOOOOOOCHHHE !!! ")
+        parle_rouge(f"ATTENTION !!! Tu as répondu en {int(temps_ecoule)} secondes")
+        parle_rouge(f"Le crocodile se RaPPPPRROOOOOOOCHHHE !!! ")
         position_crocodile=position_crocodile+pas_du_crocodile*int(temps_ecoule/temps_de_reponse)
         nb_de_question_lente+=1
 
