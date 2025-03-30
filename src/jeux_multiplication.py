@@ -38,8 +38,9 @@ def demande(texte):
 def donne_moi_un_calcul():
     """Fonction pour générer deux chiffres aléatoires et obtenir le résultat du X"""
     #chiffre_1=random.randrange(0,10,1)
-    chiffre_1=random.choice([7,3,8,4])
-    chiffre_2=random.randrange(0,10,1)
+    chiffre_1=random.choice([3,4,7,8,9])
+    #chiffre_1=12
+    chiffre_2=random.randrange(0,11,1)
     result=chiffre_1*chiffre_2
     return chiffre_1, chiffre_2, result
 
