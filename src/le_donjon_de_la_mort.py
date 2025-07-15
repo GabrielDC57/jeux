@@ -86,10 +86,14 @@ parle(f"Fais dodo {nom_du_heros}!")
 parle(f"{nom_du_heros} tu dois acheter un livre,des patates,du coca,de l'eau ...") 
 parle(f"{nom_du_heros} tu est un poisson?") 
 
+parle(f"{nom_du_heros}, un squelette s' approche!")
+combat= demande(f"Combat tu ce squelette")
+
+
 
 
 
 
 print("=======================================")
-print("FIN DU JEU")
+print("FIN DU game")
 print("=======================================")
