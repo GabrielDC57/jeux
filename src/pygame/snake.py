@@ -31,6 +31,19 @@ VERT_FONCE = (0, 150, 0)
 BLEU = (0, 100, 255)
 GRIS_FONCE = (30, 30, 30)
 
+# Couleurs pour le serpent réaliste
+VERT_SERPENT_CLAIR = (50, 200, 50)
+VERT_SERPENT_FONCE = (30, 120, 30)
+VERT_SERPENT_TETE = (40, 180, 40)
+JAUNE_OEIL = (255, 255, 0)
+NOIR_PUPILLE = (0, 0, 0)
+
+# Couleurs pour la pomme
+ROUGE_POMME = (220, 20, 20)
+ROUGE_POMME_FONCE = (180, 15, 15)
+VERT_FEUILLE = (34, 139, 34)
+MARRON_TIGE = (139, 69, 19)
+
 class Snake:
     def __init__(self):
         self.positions = [(MARGE + LARGEUR_JEU//2, MARGE + HAUTEUR_JEU//2)]
@@ -69,12 +82,70 @@ class Snake:
     
     def dessiner(self, ecran):
         for i, position in enumerate(self.positions):
-            rect = pygame.Rect(position[0], position[1], TAILLE_CASE, TAILLE_CASE)
             if i == 0:  # Tête du serpent
-                pygame.draw.rect(ecran, VERT_FONCE, rect)
+                self.dessiner_tete(ecran, position)
             else:  # Corps du serpent
-                pygame.draw.rect(ecran, VERT, rect)
-            pygame.draw.rect(ecran, BLANC, rect, 1)
+                self.dessiner_corps(ecran, position, i)
+    
+    def dessiner_tete(self, ecran, position):
+        # Corps de la tête (cercle principal)
+        centre = (position[0] + TAILLE_CASE//2, position[1] + TAILLE_CASE//2)
+        rayon = TAILLE_CASE//2 - 1
+        pygame.draw.circle(ecran, VERT_SERPENT_TETE, centre, rayon)
+        pygame.draw.circle(ecran, VERT_SERPENT_FONCE, centre, rayon, 2)
+        
+        # Déterminer la direction pour orienter la tête
+        if self.direction == (TAILLE_CASE, 0):  # Droite
+            # Yeux
+            oeil_gauche = (centre[0] + 3, centre[1] - 4)
+            oeil_droit = (centre[0] + 3, centre[1] + 4)
+        elif self.direction == (-TAILLE_CASE, 0):  # Gauche
+            oeil_gauche = (centre[0] - 3, centre[1] - 4)
+            oeil_droit = (centre[0] - 3, centre[1] + 4)
+        elif self.direction == (0, -TAILLE_CASE):  # Haut
+            oeil_gauche = (centre[0] - 4, centre[1] - 3)
+            oeil_droit = (centre[0] + 4, centre[1] - 3)
+        else:  # Bas
+            oeil_gauche = (centre[0] - 4, centre[1] + 3)
+            oeil_droit = (centre[0] + 4, centre[1] + 3)
+        
+        # Dessiner les yeux
+        pygame.draw.circle(ecran, JAUNE_OEIL, oeil_gauche, 3)
+        pygame.draw.circle(ecran, JAUNE_OEIL, oeil_droit, 3)
+        pygame.draw.circle(ecran, NOIR_PUPILLE, oeil_gauche, 1)
+        pygame.draw.circle(ecran, NOIR_PUPILLE, oeil_droit, 1)
+        
+        # Langue fourchue (si direction vers la droite)
+        if self.direction == (TAILLE_CASE, 0):
+            langue_base = (centre[0] + rayon - 2, centre[1])
+            pygame.draw.line(ecran, ROUGE, langue_base, (langue_base[0] + 6, langue_base[1]), 2)
+            pygame.draw.line(ecran, ROUGE, (langue_base[0] + 6, langue_base[1]), (langue_base[0] + 8, langue_base[1] - 2), 1)
+            pygame.draw.line(ecran, ROUGE, (langue_base[0] + 6, langue_base[1]), (langue_base[0] + 8, langue_base[1] + 2), 1)
+    
+    def dessiner_corps(self, ecran, position, index):
+        # Alterner les couleurs pour créer un motif d'écailles
+        if index % 2 == 0:
+            couleur_principale = VERT_SERPENT_CLAIR
+            couleur_bordure = VERT_SERPENT_FONCE
+        else:
+            couleur_principale = VERT_SERPENT_FONCE
+            couleur_bordure = VERT_SERPENT_CLAIR
+        
+        # Corps circulaire
+        centre = (position[0] + TAILLE_CASE//2, position[1] + TAILLE_CASE//2)
+        rayon = TAILLE_CASE//2 - 1
+        pygame.draw.circle(ecran, couleur_principale, centre, rayon)
+        pygame.draw.circle(ecran, couleur_bordure, centre, rayon, 1)
+        
+        # Ajouter des détails d'écailles
+        if index % 3 == 0:
+            for i in range(3):
+                for j in range(3):
+                    if (i + j) % 2 == 0:
+                        point_x = position[0] + 4 + i * 4
+                        point_y = position[1] + 4 + j * 4
+                        if point_x < position[0] + TAILLE_CASE - 4 and point_y < position[1] + TAILLE_CASE - 4:
+                            pygame.draw.circle(ecran, couleur_bordure, (point_x, point_y), 1)
 
 class Nourriture:
     def __init__(self):
@@ -86,8 +157,43 @@ class Nourriture:
         return (x, y)
     
     def dessiner(self, ecran):
-        rect = pygame.Rect(self.position[0], self.position[1], TAILLE_CASE, TAILLE_CASE)
-        pygame.draw.rect(ecran, ROUGE, rect)
+        self.dessiner_pomme(ecran, self.position)
+    
+    def dessiner_pomme(self, ecran, position):
+        centre = (position[0] + TAILLE_CASE//2, position[1] + TAILLE_CASE//2)
+        
+        # Corps de la pomme (cercle principal)
+        rayon_pomme = TAILLE_CASE//2 - 2
+        pygame.draw.circle(ecran, ROUGE_POMME, centre, rayon_pomme)
+        
+        # Ombre/relief pour donner du volume
+        pygame.draw.circle(ecran, ROUGE_POMME_FONCE, centre, rayon_pomme, 2)
+        
+        # Reflet sur la pomme
+        reflet_pos = (centre[0] - 3, centre[1] - 3)
+        pygame.draw.circle(ecran, BLANC, reflet_pos, 3)
+        pygame.draw.circle(ecran, ROUGE_POMME, reflet_pos, 3, 1)
+        
+        # Tige de la pomme
+        tige_debut = (centre[0], centre[1] - rayon_pomme)
+        tige_fin = (centre[0], centre[1] - rayon_pomme - 4)
+        pygame.draw.line(ecran, MARRON_TIGE, tige_debut, tige_fin, 2)
+        
+        # Feuille
+        feuille_base = (centre[0], centre[1] - rayon_pomme - 2)
+        feuille_points = [
+            feuille_base,
+            (feuille_base[0] + 4, feuille_base[1] - 2),
+            (feuille_base[0] + 6, feuille_base[1]),
+            (feuille_base[0] + 4, feuille_base[1] + 2),
+            feuille_base
+        ]
+        pygame.draw.polygon(ecran, VERT_FEUILLE, feuille_points)
+        
+        # Petits détails sur la feuille
+        pygame.draw.line(ecran, VERT_SERPENT_FONCE, 
+                        (feuille_base[0] + 1, feuille_base[1]), 
+                        (feuille_base[0] + 5, feuille_base[1] - 1), 1)
 
 class Jeu:
     def __init__(self):
@@ -229,7 +335,7 @@ class Jeu:
                         if event.key == pygame.K_SPACE:
                             self.reinitialiser()
                             jeu_termine = False
-                        elif event.key == pygame.K_ESCAPE:
+                        elif event.key == pygame.K_ESCAPE or event.key == pygame.K_F11:
                             en_cours = False
             
             self.horloge.tick(FPS)
