@@ -1,5 +1,5 @@
 import pygame
-import math
+import math     
 import random
 import time
 
@@ -159,8 +159,10 @@ class JeuArcherieMath:
             raise
         
     def jouer_son_prout(self):
-        # Simulation du son de prout - version simplifiée
-        print("PROUT! 💨")
+        
+        
+        print("Miaou 7")
+        
     
     def generer_question(self):
         if len(self.nombres_touches) >= 2:
