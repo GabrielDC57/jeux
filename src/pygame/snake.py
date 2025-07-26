@@ -11,7 +11,7 @@ LARGEUR_ECRAN = info_ecran.current_w
 HAUTEUR_ECRAN = info_ecran.current_h
 
 # Constantes
-TAILLE_CASE = 20
+TAILLE_CASE = 60
 FPS = 10
 MARGE = 100  # Marge autour de la zone de jeu
 LARGEUR_JEU = LARGEUR_ECRAN - 2 * MARGE
@@ -90,37 +90,37 @@ class Snake:
     def dessiner_tete(self, ecran, position):
         # Corps de la tête (cercle principal)
         centre = (position[0] + TAILLE_CASE//2, position[1] + TAILLE_CASE//2)
-        rayon = TAILLE_CASE//2 - 1
+        rayon = TAILLE_CASE//2 - 3
         pygame.draw.circle(ecran, VERT_SERPENT_TETE, centre, rayon)
-        pygame.draw.circle(ecran, VERT_SERPENT_FONCE, centre, rayon, 2)
+        pygame.draw.circle(ecran, VERT_SERPENT_FONCE, centre, rayon, 4)
         
         # Déterminer la direction pour orienter la tête
         if self.direction == (TAILLE_CASE, 0):  # Droite
             # Yeux
-            oeil_gauche = (centre[0] + 3, centre[1] - 4)
-            oeil_droit = (centre[0] + 3, centre[1] + 4)
+            oeil_gauche = (centre[0] + 8, centre[1] - 12)
+            oeil_droit = (centre[0] + 8, centre[1] + 12)
         elif self.direction == (-TAILLE_CASE, 0):  # Gauche
-            oeil_gauche = (centre[0] - 3, centre[1] - 4)
-            oeil_droit = (centre[0] - 3, centre[1] + 4)
+            oeil_gauche = (centre[0] - 8, centre[1] - 12)
+            oeil_droit = (centre[0] - 8, centre[1] + 12)
         elif self.direction == (0, -TAILLE_CASE):  # Haut
-            oeil_gauche = (centre[0] - 4, centre[1] - 3)
-            oeil_droit = (centre[0] + 4, centre[1] - 3)
+            oeil_gauche = (centre[0] - 12, centre[1] - 8)
+            oeil_droit = (centre[0] + 12, centre[1] - 8)
         else:  # Bas
-            oeil_gauche = (centre[0] - 4, centre[1] + 3)
-            oeil_droit = (centre[0] + 4, centre[1] + 3)
+            oeil_gauche = (centre[0] - 12, centre[1] + 8)
+            oeil_droit = (centre[0] + 12, centre[1] + 8)
         
         # Dessiner les yeux
-        pygame.draw.circle(ecran, JAUNE_OEIL, oeil_gauche, 3)
-        pygame.draw.circle(ecran, JAUNE_OEIL, oeil_droit, 3)
-        pygame.draw.circle(ecran, NOIR_PUPILLE, oeil_gauche, 1)
-        pygame.draw.circle(ecran, NOIR_PUPILLE, oeil_droit, 1)
+        pygame.draw.circle(ecran, JAUNE_OEIL, oeil_gauche, 8)
+        pygame.draw.circle(ecran, JAUNE_OEIL, oeil_droit, 8)
+        pygame.draw.circle(ecran, NOIR_PUPILLE, oeil_gauche, 4)
+        pygame.draw.circle(ecran, NOIR_PUPILLE, oeil_droit, 4)
         
         # Langue fourchue (si direction vers la droite)
         if self.direction == (TAILLE_CASE, 0):
-            langue_base = (centre[0] + rayon - 2, centre[1])
-            pygame.draw.line(ecran, ROUGE, langue_base, (langue_base[0] + 6, langue_base[1]), 2)
-            pygame.draw.line(ecran, ROUGE, (langue_base[0] + 6, langue_base[1]), (langue_base[0] + 8, langue_base[1] - 2), 1)
-            pygame.draw.line(ecran, ROUGE, (langue_base[0] + 6, langue_base[1]), (langue_base[0] + 8, langue_base[1] + 2), 1)
+            langue_base = (centre[0] + rayon - 6, centre[1])
+            pygame.draw.line(ecran, ROUGE, langue_base, (langue_base[0] + 18, langue_base[1]), 4)
+            pygame.draw.line(ecran, ROUGE, (langue_base[0] + 18, langue_base[1]), (langue_base[0] + 24, langue_base[1] - 6), 3)
+            pygame.draw.line(ecran, ROUGE, (langue_base[0] + 18, langue_base[1]), (langue_base[0] + 24, langue_base[1] + 6), 3)
     
     def dessiner_corps(self, ecran, position, index):
         # Alterner les couleurs pour créer un motif d'écailles
@@ -133,19 +133,19 @@ class Snake:
         
         # Corps circulaire
         centre = (position[0] + TAILLE_CASE//2, position[1] + TAILLE_CASE//2)
-        rayon = TAILLE_CASE//2 - 1
+        rayon = TAILLE_CASE//2 - 3
         pygame.draw.circle(ecran, couleur_principale, centre, rayon)
-        pygame.draw.circle(ecran, couleur_bordure, centre, rayon, 1)
+        pygame.draw.circle(ecran, couleur_bordure, centre, rayon, 3)
         
         # Ajouter des détails d'écailles
         if index % 3 == 0:
-            for i in range(3):
-                for j in range(3):
+            for i in range(5):
+                for j in range(5):
                     if (i + j) % 2 == 0:
-                        point_x = position[0] + 4 + i * 4
-                        point_y = position[1] + 4 + j * 4
-                        if point_x < position[0] + TAILLE_CASE - 4 and point_y < position[1] + TAILLE_CASE - 4:
-                            pygame.draw.circle(ecran, couleur_bordure, (point_x, point_y), 1)
+                        point_x = position[0] + 10 + i * 8
+                        point_y = position[1] + 10 + j * 8
+                        if point_x < position[0] + TAILLE_CASE - 10 and point_y < position[1] + TAILLE_CASE - 10:
+                            pygame.draw.circle(ecran, couleur_bordure, (point_x, point_y), 2)
 
 class Nourriture:
     def __init__(self):
@@ -163,37 +163,37 @@ class Nourriture:
         centre = (position[0] + TAILLE_CASE//2, position[1] + TAILLE_CASE//2)
         
         # Corps de la pomme (cercle principal)
-        rayon_pomme = TAILLE_CASE//2 - 2
+        rayon_pomme = TAILLE_CASE//2 - 6
         pygame.draw.circle(ecran, ROUGE_POMME, centre, rayon_pomme)
         
         # Ombre/relief pour donner du volume
-        pygame.draw.circle(ecran, ROUGE_POMME_FONCE, centre, rayon_pomme, 2)
+        pygame.draw.circle(ecran, ROUGE_POMME_FONCE, centre, rayon_pomme, 4)
         
         # Reflet sur la pomme
-        reflet_pos = (centre[0] - 3, centre[1] - 3)
-        pygame.draw.circle(ecran, BLANC, reflet_pos, 3)
-        pygame.draw.circle(ecran, ROUGE_POMME, reflet_pos, 3, 1)
+        reflet_pos = (centre[0] - 8, centre[1] - 8)
+        pygame.draw.circle(ecran, BLANC, reflet_pos, 8)
+        pygame.draw.circle(ecran, ROUGE_POMME, reflet_pos, 8, 2)
         
         # Tige de la pomme
         tige_debut = (centre[0], centre[1] - rayon_pomme)
-        tige_fin = (centre[0], centre[1] - rayon_pomme - 4)
-        pygame.draw.line(ecran, MARRON_TIGE, tige_debut, tige_fin, 2)
+        tige_fin = (centre[0], centre[1] - rayon_pomme - 12)
+        pygame.draw.line(ecran, MARRON_TIGE, tige_debut, tige_fin, 6)
         
         # Feuille
-        feuille_base = (centre[0], centre[1] - rayon_pomme - 2)
+        feuille_base = (centre[0], centre[1] - rayon_pomme - 6)
         feuille_points = [
             feuille_base,
-            (feuille_base[0] + 4, feuille_base[1] - 2),
-            (feuille_base[0] + 6, feuille_base[1]),
-            (feuille_base[0] + 4, feuille_base[1] + 2),
+            (feuille_base[0] + 12, feuille_base[1] - 6),
+            (feuille_base[0] + 18, feuille_base[1]),
+            (feuille_base[0] + 12, feuille_base[1] + 6),
             feuille_base
         ]
         pygame.draw.polygon(ecran, VERT_FEUILLE, feuille_points)
         
         # Petits détails sur la feuille
         pygame.draw.line(ecran, VERT_SERPENT_FONCE, 
-                        (feuille_base[0] + 1, feuille_base[1]), 
-                        (feuille_base[0] + 5, feuille_base[1] - 1), 1)
+                        (feuille_base[0] + 3, feuille_base[1]), 
+                        (feuille_base[0] + 15, feuille_base[1] - 3), 3)
 
 class Jeu:
     def __init__(self):
